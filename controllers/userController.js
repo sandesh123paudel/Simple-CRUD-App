@@ -33,6 +33,8 @@ exports.addUser = (req, res) => {
   res.render("add-user", {
     title: "Add User",
     page: "add-user",
+    editing: false,
+    user: null,
   });
 };
 
