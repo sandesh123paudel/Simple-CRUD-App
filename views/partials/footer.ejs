@@ -1,0 +1,53 @@
+<footer class="bg-gray-800 text-white py-6 mt-12 shadow-inner rounded-t-lg">
+  <div class="container mx-auto text-center">
+      <p class="text-sm">&copy; 2025 DevApp. All rights reserved.</p>
+      <div class="flex justify-center space-x-4 mt-3">
+          <a href="#" class="text-gray-400 hover:text-white transition-colors duration-200">
+              <i class="fab fa-facebook-f"></i>
+          </a>
+          <a href="#" class="text-gray-400 hover:text-white transition-colors duration-200">
+              <i class="fab fa-twitter"></i>
+          </a>
+          <a href="#" class="text-gray-400 hover:text-white transition-colors duration-200">
+              <i class="fab fa-linkedin-in"></i>
+          </a>
+      </div>
+  </div>
+</footer>
+
+<script>
+  // JavaScript for handling the mobile menu toggle
+  const menuToggle = document.getElementById('menu-toggle');
+  const navbarLinks = document.getElementById('navbar-links');
+
+  if (menuToggle && navbarLinks) { // Add null checks for robustness
+      menuToggle.addEventListener('click', () => {
+          navbarLinks.classList.toggle('hidden');
+      });
+
+      // Close menu when a link is clicked (optional, for SPA-like behavior)
+      navbarLinks.querySelectorAll('a').forEach(link => {
+          link.addEventListener('click', () => {
+              if (!navbarLinks.classList.contains('hidden') && window.innerWidth < 768) { // 768px is md breakpoint
+                  navbarLinks.classList.add('hidden');
+              }
+          });
+      });
+
+      // Close menu if window is resized above mobile breakpoint
+      window.addEventListener('resize', () => {
+          if (window.innerWidth >= 768) { // md breakpoint
+              navbarLinks.classList.remove('hidden');
+          } else {
+              // Ensure it's hidden if we shrink back to mobile and it wasn't explicitly opened
+              if (!menuToggle.contains(document.activeElement)) { // Check if toggle button is not active
+                 navbarLinks.classList.add('hidden');
+              }
+          }
+      });
+  } else {
+      console.warn("Menu toggle elements not found. Mobile menu might not function.");
+  }
+</script>
+</body>
+</html>
