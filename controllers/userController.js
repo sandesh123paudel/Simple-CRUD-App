@@ -71,3 +71,13 @@ exports.editUser = (req, res) => {
     });
   });
 };
+
+exports.editUserPost = (req, res) => {
+  const id = req.params.id;
+  const { name, email, phone } = req.body;
+  const image = req.file.filename;
+  const user = User.findByIdAndUpdate(id, { name, email, phone, image });
+  user.then((user) => {
+    res.redirect("/");
+  });
+};
