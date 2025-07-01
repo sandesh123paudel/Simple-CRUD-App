@@ -20,7 +20,8 @@
       </p>
     </div>
 
-    <form action="/add-user" method="post" enctype="multipart/form-data"
+    <form action="<%= editing ? '/edit-user' : '/add-user' %>" method="post"
+      enctype="multipart/form-data"
       class="space-y-6">
       <% if (editing) { %>
       <input type="hidden" name="id" value="<%= user._id %>">
